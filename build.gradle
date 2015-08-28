@@ -1,0 +1,48 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+allprojects {
+    group = 'flightrecorderrunner'
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+def javaVersion = '1.7'
+def mainClassName = "flightrecorderrunner.FlightRecorderRunner"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = javaVersion
+idea {
+    project {
+        jdkName = javaVersion
+        languageLevel = javaVersion
+    }
+
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+
